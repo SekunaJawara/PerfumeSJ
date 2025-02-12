@@ -1,0 +1,4 @@
+{{-- resources/views/components/card.blade.php --}}
+<div {{ $attributes->merge(['class' => 'bg-gray-50 border border-gray-200 rounded ']) }}>
+    {{ $slot }}
+</div>
