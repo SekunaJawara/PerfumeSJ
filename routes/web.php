@@ -9,6 +9,11 @@ use App\Http\Controllers\PerfumeController;
 //Todos los perfumes
 Route::get('/', [PerfumeController::class, 'index']);
 
+Route::get('/perfumes/vue', function(){
+    return view('perfumes.vue');
+});
+
+
 //Mostrar el formulario que crea un perfume
 Route::get('/perfumes/create', [PerfumeController::class, 'create'])->middleware('auth');
 

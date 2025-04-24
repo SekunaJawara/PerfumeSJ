@@ -13,7 +13,7 @@ class PerfumeController extends Controller
     //Muestra todos los perfumes
     public function index(){
         return view('perfumes.index',[
-            'perfumes' => Perfume::latest()->filter(request(['nota','search']))->simplePaginate(4)
+            'perfumes' => Perfume::latest()->filter(request(['nota','search']))->simplePaginate(6)
             ]
         );
     }

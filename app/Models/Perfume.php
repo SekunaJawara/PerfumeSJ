@@ -9,7 +9,7 @@ class Perfume extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['Name','Brand','Description','price','notas_principales','logo','user_id'];
+    protected $fillable = ['Name','Brand','Description','price','notas_principales','logo','user_id','banner'];
 
     public function scopeFilter ($query, array $filters){
         if($filters['nota'] ?? false){

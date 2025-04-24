@@ -2,24 +2,29 @@
 
 
 
-<x-card>
-    <div class="flex">
-
-        <img
-            class="hidden w-48 mr-6 md:block"
-            src="{{$perfume->logo ? asset('storage/' . $perfume->logo) : asset('images/heroimg.png')}}"
-            alt=""
-        />
+<div class="bg-gray-50 border border-gray-200 rounded p-4">
+    <div class="flex flex-col items-center"> 
         
-        <div>
-            <h3 class="text-2xl">
+        <!-- Imagen ajustada al ancho completo -->
+        <div class="w-full h-[22rem] flex justify-center">
+            <img
+                class="w-full h- [17rem] object-cover rounded-md"
+                src="{{$perfume->logo ? asset('storage/' . $perfume->logo) : asset('images/heroimg.png')}}"
+                alt="Imagen del perfume"
+            />
+        </div>
+
+        <!-- Bloque de textos debajo -->
+        <div class="text-left w-full mt-4">
+            <p class="text-xl font-bold">
                 <a href="/perfumes/{{$perfume->id}}">{{$perfume->Name}}</a>
-            </h3>
-            <div class="text-xl font-bold mb-4">{{$perfume->Description}}</div>
-            <x-notas-principales :notas_principalesCsv="$perfume->notas_principales"/>
-            <div class="text-lg mt-4">
+            </p>
+            <div class="text-lg mt-2">
                 <i class="fa-solid fa-house"></i> {{$perfume->Brand}}
             </div>
         </div>
+
+
+
     </div>
-</x-card>
+</div>
