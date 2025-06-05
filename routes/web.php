@@ -9,9 +9,6 @@ use App\Http\Controllers\PerfumeController;
 //Todos los perfumes
 Route::get('/', [PerfumeController::class, 'index']);
 
-Route::get('/perfumes/vue', function(){
-    return view('perfumes.vue');
-});
 
 
 //Mostrar el formulario que crea un perfume
@@ -51,3 +48,5 @@ Route::get('/login',[UserController::class,'login'])->name('login')->middleware(
 //Iniciar sesión
 Route::post('users/authenticate',[UserController::class,'authenticate']);
 
+//Mostrar la tabla de comparacion
+Route::get('/perfumes/comparar/{ids}', [PerfumeController::class, 'comparar']);

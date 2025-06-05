@@ -22,6 +22,24 @@
 <div class="mt-6 p-4">
     {{$perfumes->links()}}
 </div>
-@include('partials._carousel')
+
+<div class="bg-gray-100" >
+  <span>
+
+  </span>
+  <div class="mt-0 flex flex-col items items-center justify-center">
+    <h1 class="text-[28px] font-bold text-center mt-8">EXPLORA POR NOTAS</h1>
+    <p class="text-center">Filtra por las notas olfativas que más te gustan</p>
+    <img src="/storage/icons/drag-mouse.svg" alt="Mueve el ratón" class="w-12 h-12">
+  </div>
+  <div class="mt-5 p-5">
+  @include('partials._carousel')
+</div>
+</div>
+
+<a href="{{ url('perfumes/comparar/1,2') }}">
+  Comparar perfums
+</a>
+
 
 </x-layout>

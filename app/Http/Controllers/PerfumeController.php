@@ -99,6 +99,14 @@ class PerfumeController extends Controller
         return view('perfumes.manage', ['perfumes' => auth()->user()->perfumes()->get()]);
     }
 
+    public function comparar($ids)
+    {
+        $idArray = explode(',', $ids);
+        $perfumes = Perfume::whereIn('id', $idArray)->get();
+
+        return view('perfumes.comparator', ['perfumes' => $perfumes]);
+    }
+
 
 
 }

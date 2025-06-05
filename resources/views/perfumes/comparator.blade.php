@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+<x-layout>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    @vite(['resources/js/carousel.js', 'resources/css/carousel.css'])
+    @vite(['resources/js/comparator.js', 'resources/css/app.css'])
 </head>
 <body>
-    <div id="carousel"></div>
+
+    <div id="comparator" data-perfumes='@json($perfumes)' ></div>
 </body>
 </html>
+</x-layout>
