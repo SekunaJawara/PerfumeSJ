@@ -3,15 +3,13 @@
 
 
 <div class="bg-gray-50 border border-gray-200 rounded p-4">
-    <div class="flex flex-col items-center"> 
-        
+    <div class="flex flex-col items-center">
+
         <!-- Imagen ajustada al ancho completo -->
         <div class="w-full h-[22rem] flex justify-center">
-            <img
-                class="w-full h- [17rem] object-cover rounded-md"
+            <img class="w-full h- [17rem] object-cover rounded-md"
                 src="{{$perfume->logo ? asset('storage/' . $perfume->logo) : asset('images/heroimg.png')}}"
-                alt="Imagen del perfume"
-            />
+                alt="Imagen del perfume" />
         </div>
 
         <!-- Bloque de textos debajo -->

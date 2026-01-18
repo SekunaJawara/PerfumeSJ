@@ -43,6 +43,10 @@ class UserController extends Controller
 
     }
 
+    public function show(User $user){
+        return view('users.account');
+    }
+
     //mostrar formulario de inicio de sesión
     public function login(){
         return view('users.login');

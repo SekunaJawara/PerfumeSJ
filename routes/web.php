@@ -4,10 +4,11 @@ use App\Models\Perfume;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PerfumeController;
+use App\Http\Controllers\StripeController;
 
 
 //Todos los perfumes
-Route::get('/', [PerfumeController::class, 'index']);
+Route::get('/', [PerfumeController::class, 'index'])->name('index');
 
 
 
@@ -18,35 +19,50 @@ Route::get('/perfumes/create', [PerfumeController::class, 'create'])->middleware
 Route::post('/perfumes', [PerfumeController::class, 'store'])->middleware('auth');
 
 //Editar pefume 
-Route::get('/perfumes/{perfume}/edit',[PerfumeController::class, 'edit'])->middleware('auth');
+Route::get('/perfumes/{perfume}/edit', [PerfumeController::class, 'edit'])->middleware('auth');
 
 // Actualiza el perfume
-Route::put('/perfumes/{perfume}',[PerfumeController::class,'update'])->middleware('auth');
+Route::put('/perfumes/{perfume}', [PerfumeController::class, 'update'])->middleware('auth');
 
 // Borrar perfume
-Route::delete('/perfumes/{perfume}',[PerfumeController::class,'destroy'])->middleware('auth');
+Route::delete('/perfumes/{perfume}', [PerfumeController::class, 'destroy'])->middleware('auth');
 
 //Gestionar tus opiniones
-Route::get('/perfumes/manage',[PerfumeController::class, 'manage'])->middleware('auth');
+Route::get('/perfumes/manage', [PerfumeController::class, 'manage'])->middleware('auth');
 
 //Un perfume
 Route::get('/perfumes/{perfume}', [PerfumeController::class, 'show'])->name('perfumes.show');
 
+//Mostrar todos los perfumes
+Route::get('/perfumes/all', [PerfumeController::class, 'showAll'])->name('perfumes.all');
+
 //Muestra el formulario de creacion de usuario
-Route::get('/register',[UserController::class,'create'])->middleware('guest');
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 //Crea un nuevo usuario
-Route::post('/users',[UserController::class,'store']);
+Route::post('/users', [UserController::class, 'store']);
 
 //Cerrar sesión
-Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+//Ruta de pago en carrito
+Route::get("/stripe", [StripeController::class, "index"])->name("stripe");
+
+//Ruta de pago en carrito
+Route::post("/stripe", [StripeController::class, "payment"])->name("stripe.payment");
+
+//Ruta de pago correcto
+Route::get("/stripe/success", [StripeController::class, "success"])->name("stripe.success");
+
 
 
 //Mostrar formulario inicio de sesión
-Route::get('/login',[UserController::class,'login'])->name('login')->middleware('guest');
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
 
 //Iniciar sesión
-Route::post('users/authenticate',[UserController::class,'authenticate']);
+Route::post('users/authenticate', [UserController::class, 'authenticate']);
 
 //Mostrar la tabla de comparacion
 Route::get('/perfumes/comparar/{ids}', [PerfumeController::class, 'comparar']);
+
