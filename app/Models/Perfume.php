@@ -53,4 +53,16 @@ class Perfume extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    //Relación con OrderItems
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    //Relación con CartItems
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PerfumeController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\CartController;
+
 
 
 //Todos los perfumes
@@ -54,6 +56,14 @@ Route::post("/stripe", [StripeController::class, "payment"])->name("stripe.payme
 //Ruta de pago correcto
 Route::get("/stripe/success", [StripeController::class, "success"])->name("stripe.success");
 
+// Mostrar el carrito
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name('cart.index');
+
+// Añadir al carrito
+Route::post('/cart', [CartController::class, 'store'])->middleware('auth')->name('cart.store');
+
+// Actualizar cantidad de un item del carrito (AJAX)
+Route::patch('/cart/{cartItem}', [CartController::class, 'update'])->middleware('auth')->name('cart.update');
 
 
 //Mostrar formulario inicio de sesión

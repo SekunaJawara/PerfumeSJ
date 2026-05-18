@@ -13,7 +13,8 @@
 
                     <!-- Left Column - Payment Form -->
                     <div class="lg:col-span-2">
-                        <form method="POST" action="{{ route('stripe.payment') }}" id="stripe-form" class="bg-white rounded-2xl shadow-lg p-8">
+                        <form method="POST" action="{{ route('stripe.payment') }}" id="stripe-form"
+                            class="bg-white rounded-2xl shadow-lg p-8">
                             @csrf
                             <!-- Progress Steps -->
                             <div class="flex items-center justify-between mb-8">
@@ -114,7 +115,7 @@
                                 </svg>
                                 Pagar Ahora
                             </button>
-                            <input type="hidden" name="price" value="10">
+                            <input type="hidden" name="price" value="{{ $total }}">
                             <input type="hidden" name="stripeToken" id="stripe-token">
 
                             <!-- Security Badge -->
@@ -134,36 +135,30 @@
                         <div class="bg-white rounded-2xl shadow-lg p-8 sticky top-24">
                             <h2 class="text-xl font-bold text-gray-900 mb-6">Resumen del Pedido</h2>
 
-                            <!-- Sample Cart Items -->
+                            <!-- Artículos seleccionados -->
                             <div class="space-y-4 mb-6">
+                                @foreach($cartItems as $item)
                                 <div class="flex gap-4">
-                                    <img src="{{ asset('images/heroimg.png') }}" alt="Product"
+                                    <img src="{{ $item->perfume->logo ? asset('storage/' . $item->perfume->logo) : asset('images/heroimg.png') }}"
+                                        alt="{{ $item->perfume->name }}"
                                         class="w-20 h-20 object-cover rounded-lg">
                                     <div class="flex-1">
-                                        <h3 class="font-semibold text-gray-900 text-sm">Sauvage Dior</h3>
-                                        <p class="text-xs text-gray-500">Eau de Toilette 100ml</p>
-                                        <p class="text-sm font-semibold text-gray-900 mt-1">120.00€</p>
+                                        <h3 class="font-semibold text-gray-900 text-sm">{{ $item->perfume->Name }}</h3>
+                                        <p class="text-sm font-semibold text-gray-900 mt-1">{{ number_format($item->perfume->price, 2) }}€</p>
                                     </div>
-                                    <span class="text-sm text-gray-600">x1</span>
+                                    <span class="text-sm text-gray-600">x{{ $item->quantity }}</span>
                                 </div>
+                                @endforeach
                             </div>
 
                             <div class="border-t border-gray-200 pt-4 space-y-3">
                                 <div class="flex justify-between text-sm">
                                     <span class="text-gray-600">Subtotal</span>
-                                    <span class="font-semibold text-gray-900">120.00€</span>
-                                </div>
-                                <div class="flex justify-between text-sm">
-                                    <span class="text-gray-600">Envío</span>
-                                    <span class="font-semibold text-gray-900">5.00€</span>
-                                </div>
-                                <div class="flex justify-between text-sm">
-                                    <span class="text-gray-600">IVA (21%)</span>
-                                    <span class="font-semibold text-gray-900">25.20€</span>
+                                    <span class="font-semibold text-gray-900">{{ number_format($total, 2) }}€</span>
                                 </div>
                                 <div class="border-t border-gray-200 pt-3 flex justify-between">
                                     <span class="text-lg font-bold text-gray-900">Total</span>
-                                    <span class="text-lg font-bold text-indigo-600">150.20€</span>
+                                    <span class="text-lg font-bold text-indigo-600">{{ number_format($total, 2) }}€</span>
                                 </div>
                             </div>
 
@@ -198,7 +193,7 @@
         function createToken() {
             stripe.createToken(cardElement).then(function (result) {
                 console.log(result);
-                if(result.token){
+                if (result.token) {
                     document.getElementById('stripe-token').value = result.token.id;
                     document.getElementById('stripe-form').submit();
 

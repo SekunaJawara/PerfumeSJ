@@ -50,4 +50,15 @@ class User extends Authenticatable
     public function perfumes(){
         return $this->hasMany(Perfume::class, 'user_id');
     }
+
+
+    //Relación con Orders
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+
+    //Relación con cart items
+    public function cartItems(){
+        return $this->hasMany(CartItem::class);
+    }
 }

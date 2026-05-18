@@ -83,7 +83,7 @@
                         </div>
                         
                         @auth
-                        <a href="/login"
+                        <a href="/cart"
                                 class="flex items-center justify-center w-11 h-11 ">
                                 <i class="fa-solid fa-cart-shopping"></i>
                         </a>

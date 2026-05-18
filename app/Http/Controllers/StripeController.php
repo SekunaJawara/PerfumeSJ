@@ -3,12 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CartItem;
+use Illuminate\Support\Facades\Auth;
 
 class StripeController extends Controller
 {
     public function index(Request $request)
     {
-        return view('checkout.payment');
+        $selectedIds = $request->input('items', []);
+
+        $cartItems = CartItem::with('perfume')
+                            ->where('user_id', Auth::id())
+                            ->whereIn('id', $selectedIds)
+                            ->get();
+
+        $total = $cartItems->sum(fn($item) => $item->perfume->price * $item->quantity);
+
+        return view('checkout.payment', compact('cartItems', 'total'));
     }
 
     public function payment(Request $request)
