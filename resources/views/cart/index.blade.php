@@ -35,7 +35,7 @@
                 src="{{$item->perfume->logo ? asset('storage/' . $item->perfume->logo) : asset('images/heroimg.png')}}"
                 alt="test"
                 class="w-[100px] mr-2 inline-block h-[100px]"
-              /><span>{{ $item->perfume->name }}</span>
+              /><span>{{ $item->perfume->Name }}</span>
             </td>
             <td class="px-2 py-2">{{ $item->perfume->price }}</td>
             <td
@@ -182,6 +182,21 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const csrfToken = '{{ csrf_token() }}';
+    const checkboxes = document.querySelectorAll('input[name="items[]"]');
+
+    // Recalcula el total sumando solo los items con checkbox marcado
+    function recalculateTotal() {
+        let total = 0;
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                const subtotalText = document.getElementById('subtotal-' + cb.value).textContent;
+                total += parseFloat(subtotalText.replace('€', '').trim());
+            }
+        });
+        const formatted = total.toFixed(2) + '€';
+        document.getElementById('cart-total').textContent = formatted;
+        document.getElementById('cart-subtotal').textContent = formatted;
+    }
 
     function updateQuantity(url, newQty, itemId) {
         fetch(url, {
@@ -194,13 +209,11 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(res => res.json())
         .then(data => {
-            // Actualiza cantidad
+            // Actualiza cantidad y subtotal de la fila
             document.getElementById('qty-' + itemId).textContent = data.quantity;
-            // Actualiza subtotal de la fila
             document.getElementById('subtotal-' + itemId).textContent = data.subtotal + '€';
-            // Actualiza total del carrito
-            document.getElementById('cart-total').textContent = data.total + '€';
-            document.getElementById('cart-subtotal').textContent = data.total + '€';
+            // Recalcula el total respetando los checkboxes marcados
+            recalculateTotal();
         });
     }
 
@@ -223,6 +236,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Checkboxes — recalcula al marcar/desmarcar
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', recalculateTotal);
+    });
+
+    // Calcular el total inicial según los checkboxes (todos marcados por defecto)
+    recalculateTotal();
 });
 </script>
 
