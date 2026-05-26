@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    @vite(['resources/js/carousel.js', 'resources/css/carousel.css'])
+    @vite(['resources/js/carousel.js'])
 </head>
 <body>
     <div id="carousel"></div>
