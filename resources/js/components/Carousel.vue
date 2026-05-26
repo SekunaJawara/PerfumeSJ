@@ -12,7 +12,7 @@
       class="mySwiper"
     >
       <swiper-slide v-for="(img, i) in imagenes" :key="i">
-        <a :href="`/?nota=${encodeURIComponent(img.nombre)}`" class="slide-link">
+        <a :href="`/perfumes/all?nota=${encodeURIComponent(img.nombre)}`" class="slide-link">
           <img :src="img.url" :alt="'Imagen ' + (i + 1)" />
         </a>
         <span class="nombre-img">{{ img.nombre }}</span>

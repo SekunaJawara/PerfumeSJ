@@ -12,10 +12,18 @@ class StripeController extends Controller
     {
         $selectedIds = $request->input('items', []);
 
+        if (empty($selectedIds)) {
+            return redirect()->route('cart.index')->with('error', 'Debes seleccionar al menos un artículo para realizar el pago.');
+        }
+
         $cartItems = CartItem::with('perfume')
                             ->where('user_id', Auth::id())
                             ->whereIn('id', $selectedIds)
                             ->get();
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.index')->with('error', 'Debes seleccionar al menos un artículo válido para realizar el pago.');
+        }
 
         $total = $cartItems->sum(fn($item) => $item->perfume->price * $item->quantity);
 

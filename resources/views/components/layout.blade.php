@@ -31,7 +31,7 @@
     <title>Perfumes SJ | Perfumes Sekuna Jawara</title>
 </head>
 
-<body class="flex flex-col min-h-screen bg-gradient-to-b from-gray-50 to-white">
+<body class="font-sans flex flex-col min-h-screen bg-gradient-to-b from-gray-50 to-white">
     <!-- Premium Header -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
         <!-- Top Bar -->
@@ -42,7 +42,7 @@
 
                     <!-- Left: Search Bar -->
                     <div class="flex items-center justify-start">
-                        <form action="/" method="GET" class="w-full max-w-md">
+                        <form action="{{ route('perfumes.all') }}" method="GET" class="w-full max-w-md">
                             <div class="relative">
                                 <input type="text" name="search" placeholder="Buscar fragancias..." class=" pl-12 pr-4 py-3 text-sm bg-gray-50 border border-gray-200 rounded-full 
                                            focus:outline-none focus:ring-2 focus:ring-gray-300 focus:bg-white 
@@ -66,6 +66,10 @@
 
                     <!-- Right: Account Icon -->
                     <div class="flex items-center justify-end ml-20 gap-12">
+
+                          
+                        @auth
+                        {{--
                         <div class="ml-10">
                             <div x-data="{open:false}" class="relative inline-block">
                             <button @click="open = !open">
@@ -81,8 +85,15 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        @auth
+                             --}}
+
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button class="text-black hover:text-red-700 transition-colors">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            </button>
+                        </form>
+
                         <a href="/cart"
                                 class="flex items-center justify-center w-11 h-11 ">
                                 <i class="fa-solid fa-cart-shopping"></i>

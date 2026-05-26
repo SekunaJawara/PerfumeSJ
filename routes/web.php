@@ -32,11 +32,12 @@ Route::delete('/perfumes/{perfume}', [PerfumeController::class, 'destroy'])->mid
 //Gestionar tus opiniones
 Route::get('/perfumes/manage', [PerfumeController::class, 'manage'])->middleware('auth');
 
+//Mostrar todos los perfumes
+Route::get('/perfumes/all', [PerfumeController::class, 'showAll'])->name('perfumes.all');
+
 //Un perfume
 Route::get('/perfumes/{perfume}', [PerfumeController::class, 'show'])->name('perfumes.show');
 
-//Mostrar todos los perfumes
-Route::get('/perfumes/all', [PerfumeController::class, 'showAll'])->name('perfumes.all');
 
 //Muestra el formulario de creacion de usuario
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
@@ -45,7 +46,7 @@ Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
 
 //Cerrar sesión
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
 
 //Ruta de pago en carrito
 Route::get("/stripe", [StripeController::class, "index"])->name("stripe");
@@ -64,6 +65,10 @@ Route::post('/cart', [CartController::class, 'store'])->middleware('auth')->name
 
 // Actualizar cantidad de un item del carrito (AJAX)
 Route::patch('/cart/{cartItem}', [CartController::class, 'update'])->middleware('auth')->name('cart.update');
+
+// Eliminar un item del carrito (AJAX)
+Route::delete('/cart/{cartItem}', [CartController::class, 'destroy'])->middleware('auth')->name('cart.destroy');
+
 
 
 //Mostrar formulario inicio de sesión

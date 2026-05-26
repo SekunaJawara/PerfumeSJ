@@ -54,4 +54,18 @@ class CartController extends Controller
             'total'    => number_format($total, 2),
         ]);
     }
+
+    // Eliminar un item del carrito (AJAX)
+    public function destroy(CartItem $cartItem)
+    {
+        if ($cartItem->user_id !== Auth::id()) {
+            return response()->json(['error' => 'No autorizado'], 403);
+        }
+
+        $cartItem->delete();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
 }
