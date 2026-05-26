@@ -7,22 +7,25 @@
         <!-- Product Images -->
         <div class="w-full md:w-1/2 px-4 mb-8">
 
-          <img src="{{$perfume->logo ? asset('storage/' . $perfume->logo) : asset('images/heroimg.png')}}"
+          @php
+            $logoUrl = $perfume->logo ? (str_starts_with($perfume->logo, 'http') ? $perfume->logo : (str_starts_with($perfume->logo, 'images/') ? asset($perfume->logo) : Storage::url($perfume->logo))) : asset('images/heroimg.png');
+          @endphp
+          <img src="{{ $logoUrl }}"
             class="w-full h-auto rounded-lg shadow-md mb-4" id="mainImage">
           <div class="flex gap-4 py-4 justify-center overflow-x-auto">
-            <img src="{{$perfume->logo ? asset('storage/' . $perfume->logo) : asset('images/heroimg.png')}}"
+            <img src="{{ $logoUrl }}"
               alt="Thumbnail 1"
               class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
               onclick="changeImage(this.src)">
-            <img src="{{$perfume->logo ? asset('storage/' . $perfume->logo) : asset('images/heroimg.png')}}"
+            <img src="{{ $logoUrl }}"
               alt="Thumbnail 2"
               class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
               onclick="changeImage(this.src)">
-            <img src="{{$perfume->logo ? asset('storage/' . $perfume->logo) : asset('images/heroimg.png')}}"
+            <img src="{{ $logoUrl }}"
               alt="Thumbnail 3"
               class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
               onclick="changeImage(this.src)">
-            <img src="{{$perfume->logo ? asset('storage/' . $perfume->logo) : asset('images/heroimg.png')}}"
+            <img src="{{ $logoUrl }}"
               alt="Thumbnail 4"
               class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
               onclick="changeImage(this.src)">
@@ -193,7 +196,8 @@
               @foreach($notasSalida as $nota)
                 <div class="flex flex-col items-center">
                   <img
-                    src="{{ file_exists(public_path('storage/notas/' . strtolower(str_replace(' ', '_', $nota)) . '.jpg')) ? asset('storage/notas/' . strtolower(str_replace(' ', '_', $nota)) . '.jpg') : asset('images/heroimg.png') }}"
+                    src="{{ Storage::url('notas/' . strtolower(str_replace(' ', '_', $nota)) . '.jpg') }}"
+                    onerror="this.onerror=null;this.src='{{ asset('images/heroimg.png') }}';"
                     alt="{{ $nota }}" class="w-[7.25rem] h-[7.25rem] object-cover rounded-lg mb-2" >
                   <span class="text-xs text-gray-600 text-center font-light">{{ $nota }}</span>
                 </div>
@@ -213,7 +217,8 @@
               @foreach($notasCorazon as $nota)
                 <div class="flex flex-col items-center">
                   <img
-                    src="{{ file_exists(public_path('storage/notas/' . strtolower(str_replace(' ', '_', $nota)) . '.jpg')) ? asset('storage/notas/' . strtolower(str_replace(' ', '_', $nota)) . '.jpg') : asset('images/heroimg.png') }}"
+                    src="{{ Storage::url('notas/' . strtolower(str_replace(' ', '_', $nota)) . '.jpg') }}"
+                    onerror="this.onerror=null;this.src='{{ asset('images/heroimg.png') }}';"
                     alt="{{ $nota }}" class="w-[7.25rem] h-[7.25rem] object-cover rounded-lg mb-2">
                   <span class="text-xs text-gray-600 text-center font-light">{{ $nota }}</span>
                 </div>
@@ -233,7 +238,8 @@
               @foreach($notasBase as $nota)
                 <div class="flex flex-col items-center">
                   <img
-                    src="{{ file_exists(public_path('storage/notas/' . strtolower(str_replace(' ', '_', $nota)) . '.jpg')) ? asset('storage/notas/' . strtolower(str_replace(' ', '_', $nota)) . '.jpg') : asset('images/heroimg.png') }}"
+                    src="{{ Storage::url('notas/' . strtolower(str_replace(' ', '_', $nota)) . '.jpg') }}"
+                    onerror="this.onerror=null;this.src='{{ asset('images/heroimg.png') }}';"
                     alt="{{ $nota }}" class="w-[7.25rem] h-[7.25rem] object-cover rounded-lg mb-2">
                   <span class="text-xs text-gray-600 text-center font-light">{{ $nota }}</span>
                 </div>
@@ -260,7 +266,7 @@
             <a href="{{ route('perfumes.show', $similar->id) }}" class="group">
               <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
                 <div class="bg-gray-100 h-48 flex items-center justify-center p-4">
-                  <img src="{{ $similar->logo ? asset('storage/' . $similar->logo) : asset('images/heroimg.png') }}"
+                  <img src="{{ $similar->logo ? (str_starts_with($similar->logo, 'http') ? $similar->logo : (str_starts_with($similar->logo, 'images/') ? asset($similar->logo) : Storage::url($similar->logo))) : asset('images/heroimg.png') }}"
                     alt="{{ $similar->Name }}"
                     class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
                 </div>

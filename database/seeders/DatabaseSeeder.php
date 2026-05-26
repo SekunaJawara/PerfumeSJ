@@ -40,9 +40,9 @@ class DatabaseSeeder extends Seeder
             'recomendacion_verano' => 20,
             'recomendacion_otono' => 80,
             'recomendacion_invierno' => 95,
-            'logo' => 'logos\lemaleelixir.png'
+            'logo' => 'logos/lemaleelixir.png'
         ]);
-
+ 
         Perfume::create([
             'user_id' => $user->id,
             'Name' => 'Y EDP',
@@ -62,9 +62,9 @@ class DatabaseSeeder extends Seeder
             'recomendacion_verano' => 75,
             'recomendacion_otono' => 60,
             'recomendacion_invierno' => 45,
-            'logo' => 'logos\YEDP.png'
+            'logo' => 'logos/YEDP.png'
         ]);
-
+ 
         Perfume::create([
             'user_id' => $user->id,
             'Name' => 'Qamrah',
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
             'recomendacion_verano' => 15,
             'recomendacion_otono' => 90,
             'recomendacion_invierno' => 100,
-            'logo' => 'logos\khamra.png'
+            'logo' => 'logos/khamra.png'
         ]);
 
         Perfume::create([

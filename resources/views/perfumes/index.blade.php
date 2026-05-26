@@ -37,9 +37,9 @@
         <div
           class="w-[90%] mx-auto flex md:flex-row flex-col lg:gap-4 gap-2 justify-center lg:items-stretch md:items-center mt-4">
           <!--  -->
-          <img class="md:w-[50%] w-full md:rounded-t-lg rounded-sm" src="/storage/banners/banner2.jpg"
+          <img class="md:w-[50%] w-full md:rounded-t-lg rounded-sm" src="{{ Storage::url('banners/banner2.jpg') }}"
             alt="billboard image" />
-
+ 
           <div class="md:w-[50%] w-full bg-gray-100 md:p-4 p-0 rounded-md">
             <h2 class="text-3xl font-semibold text-gray-900">Lorem ipsum dolor sit amet consectetur</h2>
             <p class="text-md mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore placeat assumenda
@@ -52,15 +52,15 @@
               assumenda nam veritatis, magni doloremque pariatur quos fugit ipsa id voluptatibus deleniti officiis cum
               ratione eligendi sed necessitatibus aliquam error laborum delectus quaerat. Delectus hic error eligendi
               sed repellat natus fuga nobis tempora possimus ullam!
-
+ 
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore placeat assumenda nam veritatis, magni
               doloremque pariatur quos fugit ipsa id voluptatibus deleniti officiis cum ratione eligendi sed
               necessitatibus aliquam error laborum delectus quaerat. Delectus hic error eligendi sed repellat natus fuga
               nobis tempora possimus ullam!
-
+ 
             </p>
           </div>
-
+ 
         </div>
         <!-- Col - 3 -->
         <div
@@ -68,7 +68,7 @@
           <!--  -->
           <div class="md:w-[50%] w-full bg-gray-100 md:p-4 p-0 rounded-md">
             <h2 class="text-3xl font-semibold text-gray-900">Lorem ipsum dolor sit amet consectetur</h2>
-
+ 
             <p class="text-md mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore placeat assumenda
               nam
               veritatis, magni doloremque pariatur quos fugit ipsa id voluptatibus deleniti officiis cum ratione
@@ -79,26 +79,26 @@
               assumenda nam veritatis, magni doloremque pariatur quos fugit ipsa id voluptatibus deleniti officiis cum
               ratione eligendi sed necessitatibus aliquam error laborum delectus quaerat. Delectus hic error eligendi
               sed repellat natus fuga nobis tempora possimus ullam!
-
+ 
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore placeat assumenda nam veritatis, magni
               doloremque pariatur quos fugit ipsa id voluptatibus deleniti officiis cum ratione eligendi sed
               necessitatibus aliquam error laborum delectus quaerat. Delectus hic error eligendi sed repellat natus fuga
               nobis tempora possimus ullam!
-
+ 
             </p>
           </div>
           <!--  -->
-          <img class="md:w-[50%] w-full md:rounded-t-lg rounded-sm" src="/storage/banners/banner3.jpg"
+          <img class="md:w-[50%] w-full md:rounded-t-lg rounded-sm" src="{{ Storage::url('banners/banner3.jpg') }}"
             alt="billboard image" />
-
+ 
         </div>
       </div>
     </section>
-
+ 
     <div class="mt-0 flex flex-col items items-center justify-center ">
       <h1 class="text-[28px] font-bold text-center mt-8">EXPLORA POR NOTAS</h1>
       <p class="text-center">Filtra por las notas olfativas que más te gustan</p>
-      <img src="/storage/icons/drag-mouse.svg" alt="Mueve el ratón" class="w-12 h-12">
+      <img src="{{ Storage::url('icons/drag-mouse.svg') }}" alt="Mueve el ratón" class="w-12 h-12">
     </div>
     <div class="mt-5 p-5">
       @include('partials._carousel')

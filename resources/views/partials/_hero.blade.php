@@ -12,7 +12,7 @@
         @endif
         @foreach ($ultimos as $uPerfume)
             <div class="hidden duration-200 ease-linear" data-carousel-item>
-                <img src="{{$uPerfume->banner ? asset('storage/' . $uPerfume->banner) : asset('images/heroimg.png')}}"
+                <img src="{{ $uPerfume->banner ? (str_starts_with($uPerfume->banner, 'http') ? $uPerfume->banner : (str_starts_with($uPerfume->banner, 'images/') ? asset($uPerfume->banner) : Storage::url($uPerfume->banner))) : asset('images/heroimg.png') }}"
                     class="absolute block w-full h-full object-cover top-0 left-0" alt="...">
             </div>
         @endforeach

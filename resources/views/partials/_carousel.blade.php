@@ -8,6 +8,6 @@
     @vite(['resources/js/carousel.js'])
 </head>
 <body>
-    <div id="carousel"></div>
+    <div id="carousel" data-storage-url="{{ Storage::url('') }}"></div>
 </body>
 </html>

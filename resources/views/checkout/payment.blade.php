@@ -139,7 +139,7 @@
                             <div class="space-y-4 mb-6">
                                 @foreach($cartItems as $item)
                                 <div class="flex gap-4">
-                                    <img src="{{ $item->perfume->logo ? asset('storage/' . $item->perfume->logo) : asset('images/heroimg.png') }}"
+                                    <img src="{{ $item->perfume->logo ? (str_starts_with($item->perfume->logo, 'http') ? $item->perfume->logo : (str_starts_with($item->perfume->logo, 'images/') ? asset($item->perfume->logo) : Storage::url($item->perfume->logo))) : asset('images/heroimg.png') }}"
                                         alt="{{ $item->perfume->name }}"
                                         class="w-20 h-20 object-cover rounded-lg">
                                     <div class="flex-1">

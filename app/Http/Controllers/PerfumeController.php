@@ -64,7 +64,7 @@ public function showAll(){
         $formFields['user_id'] = Auth::id();
 
         if ($request->hasFile('logo')) {
-            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+            $formFields['logo'] = $request->file('logo')->store('logos');
         }
 
         Perfume::create($formFields);
@@ -90,7 +90,7 @@ public function showAll(){
         ]);
 
         if ($request->hasFile('logo')) {
-            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+            $formFields['logo'] = $request->file('logo')->store('logos');
         }
 
         $perfume->update($formFields);

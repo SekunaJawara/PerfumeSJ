@@ -32,16 +32,25 @@
       Swiper,
       SwiperSlide,
     },
-    setup() {
+    props: {
+      storageUrl: {
+        type: String,
+        default: '/storage/'
+      }
+    },
+    setup(props) {
+      // Nos aseguramos de que termine con '/'
+      const base = props.storageUrl.endsWith('/') ? props.storageUrl : props.storageUrl + '/';
+
       const imagenes = [
-        { nombre: 'bergamota', url: '/storage/notas/bergamota.jpg' },
-        { nombre: 'especias', url: '/storage/notas/especias.jpg' },
-        { nombre: 'jengibre', url: '/storage/notas/jengibre.jpg' },
-        { nombre: 'lavanda', url: '/storage/notas/lavanda.jpg' },
-        { nombre: 'manzana', url: '/storage/notas/manzana.jpg' },
-        { nombre: 'menta', url: '/storage/notas/menta.jpg' },
-        { nombre: 'oud', url: '/storage/notas/oud.jpg' },
-        { nombre: 'vainilla', url: '/storage/notas/vainilla.jpg' },
+        { nombre: 'bergamota', url: `${base}notas/bergamota.jpg` },
+        { nombre: 'especias', url: `${base}notas/especias.jpg` },
+        { nombre: 'jengibre', url: `${base}notas/jengibre.jpg` },
+        { nombre: 'lavanda', url: `${base}notas/lavanda.jpg` },
+        { nombre: 'manzana', url: `${base}notas/manzana.jpg` },
+        { nombre: 'menta', url: `${base}notas/menta.jpg` },
+        { nombre: 'oud', url: `${base}notas/oud.jpg` },
+        { nombre: 'vainilla', url: `${base}notas/vainilla.jpg` },
       ];
   
       return {

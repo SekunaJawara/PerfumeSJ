@@ -36,7 +36,7 @@
                   </td>
                   <td class="px-2 py-2 text-left align-top">
                     <img
-                      src="{{$item->perfume->logo ? asset('storage/' . $item->perfume->logo) : asset('images/heroimg.png')}}"
+                      src="{{ $item->perfume->logo ? (str_starts_with($item->perfume->logo, 'http') ? $item->perfume->logo : (str_starts_with($item->perfume->logo, 'images/') ? asset($item->perfume->logo) : Storage::url($item->perfume->logo))) : asset('images/heroimg.png') }}"
                       alt="test" class="w-[100px] mr-2 inline-block h-[100px]" /><span>{{ $item->perfume->Name }}</span>
                   </td>
                   <td class="px-2 py-2">{{ $item->perfume->price }}</td>

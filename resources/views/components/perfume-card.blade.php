@@ -7,8 +7,8 @@
 
         <!-- Imagen ajustada al ancho completo -->
         <div class="w-full h-[22rem] flex justify-center">
-            <img class="w-full h- [17rem] object-cover rounded-md"
-                src="{{$perfume->logo ? asset('storage/' . $perfume->logo) : asset('images/heroimg.png')}}"
+            <img class="w-full h-[17rem] object-cover rounded-md"
+                src="{{ $perfume->logo ? (str_starts_with($perfume->logo, 'http') ? $perfume->logo : (str_starts_with($perfume->logo, 'images/') ? asset($perfume->logo) : Storage::url($perfume->logo))) : asset('images/heroimg.png') }}"
                 alt="Imagen del perfume" />
         </div>
 
